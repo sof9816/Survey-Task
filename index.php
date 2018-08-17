@@ -3,11 +3,11 @@ include('config/config.php');
 
 function logout()
 {
-    $_SESSION['user'] = "";
+   $_SESSION['user'] = null  ;
     session_unset();
     session_destroy();
     header('Location: login.php');
-    exit();
+    // exit();
 
 }
 if (isset($_POST['logout'])) {

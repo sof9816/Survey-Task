@@ -1,6 +1,7 @@
 <?php 
-session_start();
-include("config/connection.php");
+// session_start();
+include("config/config.php");
+$_SESSION['user'] = "" ;
 function getUsers($dbc)
 {
     $user = array();
@@ -11,26 +12,28 @@ function getUsers($dbc)
             array_push($user, $row['user_name']);
         }
 
-        if (isset($_POST['name'])) {
-            $sqlUser = $_POST['name'];
-            if (in_array($sqlUser, $user)) {
-                $_SESSION['user'] = $sqlUser;
-                sleep(2);
-                header('Location: index.php');
-            } elseif ($sqlUser == null) {
-                echo '
-                <div class="wrongUser">Enter a username please ! <div>
-                ';
-            } else {
-                echo '
-                <div class="wrongUser"> The user Does not exists ! <div>
-                ';
-            }
-        }
-    }
 
+    }
+    return $user;
 }
 
+function auth($user)
+{
+    $sqlUser = $_POST['name'];
+    if (in_array($sqlUser, $user)) {
+        $_SESSION['user'] = $sqlUser;
+        sleep(2);
+        // header('Location: index.php');
+    } elseif ($sqlUser == null) {
+        echo '
+            <div class="wrongUser">Enter a username please ! <div>
+            ';
+    } else {
+        echo '
+            <div class="wrongUser"> The user Does not exists ! <div>
+            ';
+    }
+}
 
 function login($dbc)
 {
@@ -44,7 +47,10 @@ function login($dbc)
     ';
 
     if (isset($_POST['submit'])) {
-        getUsers($dbc);
+        $user = getUsers($dbc);
+        if (isset($_POST['name'])) {
+            auth($user);
+        }
     }
 }
 

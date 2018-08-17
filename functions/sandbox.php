@@ -1,5 +1,4 @@
     <?php
-    session_start();
 
     // unsetCookie('plusUser');
 
@@ -9,9 +8,14 @@
         $res = setcookie($name, '', time() - 3600);
     }
 
+    echo gettype($_SESSION['user']);
 
-    if ($_SESSION['user'] == null) {
+    if (strlen($_SESSION['user']) < 1) {
+        // $_SESSION['user'] = null;
+        // session_unset();
+        // session_destroy();
         header('Location: login.php');
+        // exit();
 
     }
     if (isset($_COOKIE['plusUser'])) {

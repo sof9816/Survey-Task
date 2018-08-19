@@ -1,5 +1,5 @@
     <?php
-
+    include('file.php');
     // unsetCookie('plusUser');
     // session_start();
     function unsetCookie($name)
@@ -11,12 +11,14 @@
     if (isset($_COOKIE['plusUser'])) {
         header('Location: done.php');
     }
-    if (!isset($_SESSION['user'])) {
+    if (empty($_SESSION['user'])) {
         // $_SESSION['user'] = "";
+        ob_start();
         session_unset();
         session_destroy();
-        header('Location: login.php');
-        // exit();
+        header('Location: login.php',true,301);
+        ob_end_flush();
+        exit();
 
     }
    
@@ -48,7 +50,7 @@
     {
         $query = "select * from survey_qus where 1";
         $result = @mysqli_query($dbc, $query);
-        echo '<form method ="post" action= "index.php" > ';
+        echo '<form method ="post" action= "" > ';
 
         if ($result) {
             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {

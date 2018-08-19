@@ -1,13 +1,32 @@
 <?php
-include('config/config.php');
+include('file.php');
+//  if (empty($_SESSION['user'])) {
+//      echo "yes";
+//         // $_SESSION['user'] = "";
+//         session_unset();
+//         session_destroy();
+//         ob_start();
+//          header('Location: login.php');
+//         ob_end_flush();
+//         exit();
+//         // exit();
+//     }
+    // else {
+    //     echo "no";
+
+    // }
+include_once('config/config.php');
 
 function logout()
 {
     $_SESSION['user'] = "";
-    session_unset();
-    session_destroy();
+    // session_unset();
+    // session_destroy();
+    // echo 'hi';
+    ob_start();
     header('Location: login.php');
-    // exit();
+    ob_end_flush();
+    exit();
 
 }
 if (isset($_POST['logout'])) {

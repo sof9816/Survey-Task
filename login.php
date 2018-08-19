@@ -1,7 +1,7 @@
 <?php 
-// session_start();
-include("config/config.php");
-$_SESSION['user'] = "" ;
+session_start();
+include_once("config/connection.php");
+// $_SESSION['user'] = "" ;
 function getUsers($dbc)
 {
     $user = array();
@@ -22,8 +22,8 @@ function auth($user)
     $sqlUser = $_POST['name'];
     if (in_array($sqlUser, $user)) {
         $_SESSION['user'] = $sqlUser;
-        sleep(2);
-        // header('Location: index.php');
+        // sleep(2);
+        header('Location: index.php');
     } elseif ($sqlUser == null) {
         echo '
             <div class="wrongUser">Enter a username please ! <div>
@@ -96,7 +96,7 @@ body {
     max-width: 800px;
     margin: 200px auto ;
     padding: 30px;
-    box-shadow: 0px 7px 20px rgba(0,0,0,.1);
+    box-shadow: 0px 5px 10px rgba(0,0,0,.1);
     background: rgba(244, 244, 244, 0.76);
 }   
 .wrongUser {

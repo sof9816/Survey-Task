@@ -1,26 +1,25 @@
     <?php
 
     // unsetCookie('plusUser');
-
+    // session_start();
     function unsetCookie($name)
     {
         unset($_COOKIE[$name]);
         $res = setcookie($name, '', time() - 3600);
     }
 
-    echo gettype($_SESSION['user']);
-
-    if (strlen($_SESSION['user']) < 1) {
-        // $_SESSION['user'] = null;
-        // session_unset();
-        // session_destroy();
+    if (isset($_COOKIE['plusUser'])) {
+        header('Location: done.php');
+    }
+    if (!isset($_SESSION['user'])) {
+        // $_SESSION['user'] = "";
+        session_unset();
+        session_destroy();
         header('Location: login.php');
         // exit();
 
     }
-    if (isset($_COOKIE['plusUser'])) {
-        header('Location: done.php');
-    }
+   
     /* ----------------------------------------- */
     /* ######################################### */
     /* ############# sandbox ################### */

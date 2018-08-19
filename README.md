@@ -7,3 +7,7 @@
   <li>Export the "Survey_database.sql" file to the "survey" db </li>
   <li>Done</li>
 </ol>
+
+<code>
+  Ps: The user name to login is either user1 or user2 and offcourse you can still change, delete and put new user from the database if you can access it. 
+</code>

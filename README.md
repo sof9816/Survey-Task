@@ -8,11 +8,6 @@
   <li>Done</li>
 </ol>
 
-<mark>Ps: The user name to login is either user1 or user2 and offcourse you can still change, delete and put new user from the database if you can access it.  </mark>
-
-<style>
-  body{
-  font-size : 16px;
-  font-weight : 700px;
-  }
-  </style>
+<code>
+  Ps: The user name to login is either user1 or user2 and offcourse you can still change, delete and put new user from the database if you can access it. 
+</code>

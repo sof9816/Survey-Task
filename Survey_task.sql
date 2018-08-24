@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2018 at 08:14 AM
+-- Generation Time: Aug 24, 2018 at 07:52 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -38,8 +38,8 @@ CREATE TABLE `poll` (
 --
 
 INSERT INTO `poll` (`id`, `c_one`, `c_two`, `c_three`) VALUES
-(1, 0, 0, 0),
-(2, 0, 0, 0);
+(1, 2, 1, 0),
+(2, 2, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -87,16 +87,17 @@ INSERT INTO `survey_qus` (`qus_id`, `survey_id`, `question_body`) VALUES
 
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
-  `user_name` varchar(255) NOT NULL
+  `user_name` varchar(255) NOT NULL,
+  `password` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`) VALUES
-(1, 'user1'),
-(2, 'user2');
+INSERT INTO `users` (`user_id`, `user_name`, `password`) VALUES
+(1, 'user1', 'pass1'),
+(2, 'user2', 'pass2');
 
 --
 -- Indexes for dumped tables
@@ -150,7 +151,7 @@ ALTER TABLE `survey_qus`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

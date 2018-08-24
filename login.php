@@ -1,43 +1,40 @@
 <?php 
-include('file.php');
 session_start();
-include_once("config/connection.php");
-// $_SESSION['user'] = "" ;
+include("config/connection.php");
 function getUsers($dbc)
 {
     $user = array();
+    $pass = array();
     $q = "select * from users where 1";
     $rs = mysqli_query($dbc, $q);
     if ($rs) {
         while ($row = mysqli_fetch_array($rs, MYSQLI_ASSOC)) {
             array_push($user, $row['user_name']);
+            array_push($pass, $row['password']);
         }
 
-
+        if (isset($_POST['name']) && isset($_POST['pass'])) {
+            $sqlUser = $_POST['name'];
+            $sqlPass = $_POST['pass'];
+            if (in_array($sqlUser, $user) and in_array($sqlPass, $pass) 
+            and array_search($sqlUser,$user,true) == array_search($sqlPass,$pass,true)) {
+                $_SESSION['user'] = $sqlUser;
+                sleep(2);
+                header('Location: index.php');
+            } elseif ($sqlUser == null or empty($_POST['pass'])) {
+                echo '
+                <div class="wrongUser">Fill all the fields please ! <div>
+                ';
+            } else {
+                echo '
+                <div class="wrongUser">Wrong user or password ! <div>
+                ';
+            }
+        }
     }
-    return $user;
+
 }
 
-function auth($user)
-{
-    $sqlUser = $_POST['name'];
-    if (in_array($sqlUser, $user)) {
-        $_SESSION['user'] = $sqlUser;
-        // sleep(2);
-        ob_start();
-        header('Location: index.php');
-        ob_end_flush();
-        // exit();
-    } elseif ($sqlUser == null) {
-        echo '
-            <div class="wrongUser">Enter a username please ! </div>
-            ';
-    } else {
-        echo '
-            <div class="wrongUser"> The user Does not exists ! </div>
-            ';
-    }
-}
 
 function login($dbc)
 {
@@ -46,19 +43,19 @@ function login($dbc)
     <form action="login.php" method="POST" >
         <input type="text" name="name"  placeholder="username">
         <br>
+        <input type="password" name="pass"  placeholder="password">
+        <br>
         <input type="submit" name="submit" value="Login">
     </form>
+    <div><a href="signUp.php"> Not a user ? Sign up</a></div>
+
     ';
 
-  
-}
-    $user = null;
-  if (isset($_POST['submit'])) {
-        $user = getUsers($dbc); 
+    if (isset($_POST['submit'])) {
+        getUsers($dbc);
     }
-    if (isset($_POST['name'])) {
-            auth($user);
-        }
+}
+
 ?>
 
 
@@ -70,7 +67,6 @@ function login($dbc)
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="loginStyle.css">
     <title>Login</title>
-
 </head>
 <body>
     <div class="login">

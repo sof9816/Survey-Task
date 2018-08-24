@@ -5,9 +5,6 @@
 /* ############# config #################### */
 /* ######################################### */
 /* ----------------------------------------- */
-ob_start();
-
-session_start();
 
 include('config/connection.php');
 include('functions/template.php');

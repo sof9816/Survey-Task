@@ -1,5 +1,7 @@
     <?php
-    session_start();
+    include('file.php');
+
+    // session_start();
 
     // unsetCookie('plusUser');
 
@@ -10,12 +12,18 @@
     }
 
 
-    if ($_SESSION['user'] == null) {
-        header('Location: login.php');
-
-    }
     if (isset($_COOKIE['plusUser'])) {
         header('Location: done.php');
+    }
+    if (empty($_SESSION['user'])) {
+        // $_SESSION['user'] = "";
+        ob_start();
+        session_unset();
+        session_destroy();
+        header('Location: login.php', true, 301);
+        ob_end_flush();
+        exit();
+
     }
     /* ----------------------------------------- */
     /* ######################################### */

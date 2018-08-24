@@ -1,11 +1,15 @@
 <?php
+include('file.php');
 include('config/config.php');
 function logout()
 {
     $_SESSION['user'] = "";
-    session_unset();
-    session_destroy();
+    // session_unset();
+    // session_destroy();
+    // echo 'hi';
+    ob_start();
     header('Location: login.php');
+    ob_end_flush();
     exit();
 
 }

@@ -1,11 +1,12 @@
 <?php
+include('file.php');
 include("config/connection.php");
 
 function sginup($dbc)
 {
 
     echo '
-    <form action="signUP.php" method="POST" >
+    <form action="signUp.php" method="POST" >
         <input type="text" name="names"  placeholder="username">
         <br>
         <input type="password" name="passs"  placeholder="password">
@@ -17,11 +18,11 @@ function sginup($dbc)
 
     if (isset($_POST['register'])) {
         // echo '
-        //     <div>Submit<div>
+        //     <div>Submit</div>
         //     ';
         if (empty($_POST['names']) or empty($_POST['passs'])) {
             echo '
-            <div class="wrongUser">Fill all the fields please ! <div>
+            <div class="wrongUser">Fill all the fields please ! </div>
             ';
         } elseif (isset($_POST['names']) && isset($_POST['passs'])) {
             setUsers($dbc, $_POST['names'], $_POST['passs']);
@@ -56,7 +57,7 @@ function setUsers($dbc, $user, $pass)
 
         if (in_array($usr, $sqlUser)) {
             echo '
-            <div class="wrongUser">This user already Exists !  <div>
+            <div class="wrongUser">This user already Exists !  </div>
             ';
 
         } else {
@@ -65,7 +66,7 @@ function setUsers($dbc, $user, $pass)
                 mysqli_close($dbc);
                 echo '<div>Done you have signed up successfully</div>
                 ';
-                sleep(2);
+                // sleep(2);
                 header('Location: login.php');
             } else {
                 echo '<div>Error, check Your inputs</div>

@@ -42,8 +42,7 @@ function setUsers($dbc, $user, $pass)
     $pas = filter_var($pass, FILTER_SANITIZE_ENCODED);
 
     $q = "INSERT INTO `users`( `user_name`, `password`) 
-    VALUES ('" . $usr . "
-    ','" . $pas . "') ";
+    VALUES ('" . $usr . "','" . $pas . "')";
 
     $qSelec = "select * from users where 1";
     $rs = mysqli_query($dbc, $qSelec);

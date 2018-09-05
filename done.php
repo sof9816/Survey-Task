@@ -2,7 +2,15 @@
 include('config/connection.php');
 session_start();
 
-if (isset($_COOKIE['plusUser'])) {
+$user = $_SESSION['user'];
+
+$q1 = 'select done from users where ( user_name="'
+    . $user . '" or email ="'
+    . $user . '" ) ;';
+$rs = mysqli_query($dbc, $q1);
+$row = mysqli_fetch_array($rs, MYSQLI_ASSOC);
+
+if ($row['done'] == 1) {
     session_unset();
     session_destroy();
     mysqli_close($dbc);

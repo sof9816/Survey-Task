@@ -2,35 +2,12 @@
 include('file.php');
 session_start();
 include("config/connection.php");
-// function getUsers($dbc)
-// {
-//     $user = array();
-//     $q = "select user_name from users where 1";
-//     $rs = mysqli_query($dbc, $q);
-//     if ($rs) {
-//         while ($row = mysqli_fetch_array($rs, MYSQLI_ASSOC)) {
-//             array_push($user, $row['user_name']);
-//         }
-//     }
-//     return $user;
-// }
-// function getPass($dbc)
-// {
-//     $pass = array();
-//     $q = "select password from users where 1";
-//     $rs = mysqli_query($dbc, $q);
-//     if ($rs) {
-//         while ($row = mysqli_fetch_array($rs, MYSQLI_ASSOC)) {
-//             array_push($pass, $row['password']);
-//         }
-//     }
-//     return $pass;
-// }
 
 function chk($dbc, $user, $pass)
 {
-    $q = 'select user_name,password from users where user_name="'
-        . $user . '" AND password="' . $pass . '" ;';
+    $q = 'select user_name,password from users where ( user_name="'
+        . $user . '" or email ="'
+        . $user . '" ) AND password="' . $pass . '" ;';
 
     $rs = mysqli_query($dbc, $q);
 
@@ -44,8 +21,12 @@ function chk($dbc, $user, $pass)
 
 function auth($dbc)
 {
-    $sqlUser = $_POST['name'];
-    $sqlPass = $_POST['pass'];
+
+    $sqlUser = filter_var($_POST['name'], FILTER_SANITIZE_ENCODED);
+    if (filter_var($_POST['name'], FILTER_VALIDATE_EMAIL)) {
+        $sqlUser = filter_var($_POST['name'], FILTER_VALIDATE_EMAIL);
+    }
+    $sqlPass = filter_var($_POST['pass'], FILTER_SANITIZE_ENCODED);
 
     if (chk($dbc, $sqlUser, $sqlPass)) {
         $_SESSION['user'] = $sqlUser;
@@ -65,15 +46,12 @@ function auth($dbc)
 
 }
 
-
-
-
 function login($dbc)
 {
 
     echo '
     <form action="login.php" method="POST" >
-        <input type="text" name="name"  placeholder="username">
+        <input type="text" name="name"  placeholder="username or email">
         <br>
         <input type="password" name="pass"  placeholder="password">
         <br>
@@ -87,15 +65,6 @@ function login($dbc)
 if (isset($_POST['submit'])) {
     auth($dbc);
 }
-// $user = null;
-// $pass = null;
-// if (isset($_POST['submit'])) {
-//     $user = getUsers($dbc);
-//     $pass = getPass($dbc);
-// }
-// if (isset($_POST['name'])) {
-//     auth($user, $pass);
-// }
 
 ?>
 

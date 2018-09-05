@@ -61,8 +61,28 @@ form {
   margin: 0 auto;
 }
 
-input {
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, .1);
+.req:after {
+  content: " *";
+  color: #e32;
+  position: absolute;
+  margin: 10px 0px 0px -80px;
+  font-size: xx-large;
+  padding: 0 5px 0 0;
+}
+
+input:not([type=email]) {
+  box-shadow: 1px 1px 100px rgba(0, 0, 0, .1);
+  height: auto;
+  margin: 5px 100px;
+  padding: 10px;
+  border: none;
+  border-radius: 2px;
+  font-size: 18px;
+  cursor: text;
+  width: 250px;
+}
+
+input[type=email] {
   height: auto;
   margin: 5px 100px;
   padding: 10px;
@@ -83,14 +103,14 @@ input[type=submit] {
   cursor: pointer;
   background: #297dfc;
 }
- a {
+
+a {
   margin: 0px;
   padding: 2px 0 2px 4px;
   text-decoration: none;
   color: blue;
-
 }
 
- a:hover {
+a:hover {
   color: brown;
-} 
+}

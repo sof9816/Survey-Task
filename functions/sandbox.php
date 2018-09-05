@@ -11,10 +11,25 @@
         $res = setcookie($name, '', time() - 3600);
     }
 
+    $user = $_SESSION['user'];
+    $q1 = 'select done from users where ( user_name="'
+        . $user . '" or email ="'
+        . $user . '" ) ;';
+    $q2 = 'UPDATE `users` SET done = 1 WHERE ( user_name="'
+        . $user . '" or email ="'
+        . $user . '" ) ;';
 
-    if (isset($_COOKIE['plusUser'])) {
-        header('Location: done.php');
+    $rs = mysqli_query($dbc, $q1);
+    $row = mysqli_fetch_array($rs, MYSQLI_ASSOC);
+
+
+    if ($row['done'] == 1) {
+        ob_start();
+        header('Location: done.php', true, 301);
+        ob_end_flush();
+        exit();
     }
+
     if (empty($_SESSION['user'])) {
         // $_SESSION['user'] = "";
         ob_start();
@@ -138,7 +153,8 @@
             $process = mysqli_query($dbc, $selection_stmt) or die(mysqli_connect_error());
             if ($process) {
                 echo "<br>Your vote has been casted for poll" . $index . " => ";
-                setcookie("plusUser", "+1", time() + (60 * 60 * 24 * 30), "index.php");
+                $rs = mysqli_query($GLOBALS['dbc'], $GLOBALS['q2']);
+                // setcookie("plusUser", "+1", time() + (60 * 60 * 24 * 30), "index.php");
                 header('Location: done.php');
             } else {
 

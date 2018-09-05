@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2018 at 07:52 PM
+-- Generation Time: Sep 05, 2018 at 10:25 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -38,8 +38,8 @@ CREATE TABLE `poll` (
 --
 
 INSERT INTO `poll` (`id`, `c_one`, `c_two`, `c_three`) VALUES
-(1, 2, 1, 0),
-(2, 2, 1, 0);
+(1, 16, 1, 0),
+(2, 16, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -88,16 +88,20 @@ INSERT INTO `survey_qus` (`qus_id`, `survey_id`, `question_body`) VALUES
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `user_name` varchar(255) NOT NULL,
-  `password` varchar(25) NOT NULL
+  `password` varchar(25) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `fullname` varchar(25) NOT NULL,
+  `city` varchar(25) CHARACTER SET utf32 DEFAULT NULL,
+  `done` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `password`) VALUES
-(1, 'user1', 'pass1'),
-(2, 'user2', 'pass2');
+INSERT INTO `users` (`user_id`, `user_name`, `password`, `email`, `fullname`, `city`, `done`) VALUES
+(1, 'user1', 'pass1', 'e1@eamil.com', 'Full User', 'city1', 1),
+(2, 'user2', 'pass2', 'sljs@sjl.com', 'user', '', 0);
 
 --
 -- Indexes for dumped tables
@@ -151,7 +155,7 @@ ALTER TABLE `survey_qus`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

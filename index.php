@@ -31,7 +31,9 @@ if (isset($_POST['logout'])) {
 <body>
     <div class="wrapAll">
         <div class="header">
-            <h2 class="sTitle">Survey<h2>
+            <h2 class="sTitle">
+                <a href="edit.php"><?php getUser() ?></a> 
+                <h2>
                 <form method="post">
                     <input type="submit" name="logout" class="s" value="Logout"> 
                 </form>

@@ -10,7 +10,16 @@
 /* ----------------------------------------- */
 /* ############# header #################### */
 /* ----------------------------------------- */
+function getUser()
+{
+    $q = 'select user_name from users where ( user_name="'
+        . $_SESSION['user'] . '" or email ="'
+        . $_SESSION['user'] . '" );';
+    $rs = mysqli_query($GLOBALS['dbc'], $q);
+    $row = mysqli_fetch_array($rs, MYSQLI_ASSOC);
+    echo $row['user_name'];
 
+}
 function head()
 {
     echo '<h2 class="sTitle">' . getSurName() . '</h2>';

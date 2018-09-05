@@ -2,47 +2,21 @@
 include('file.php');
 include("config/connection.php");
 
-function sginup($dbc)
+
+function setUsers($dbc, $user, $pass, $email, $fullname, $city)
 {
-
-    echo '
-    <form action="signUp.php" method="POST" >
-        <input type="text" name="names"  placeholder="username">
-        <br>
-        <input type="password" name="passs"  placeholder="password">
-        <br>
-        <input type="submit" name="register" value="Sign Up">
-    </form>
-    <div><a href="login.php">Log In </a></div>
-    ';
-
-    if (isset($_POST['register'])) {
-        // echo '
-        //     <div>Submit</div>
-        //     ';
-        if (empty($_POST['names']) or empty($_POST['passs'])) {
-            echo '
-            <div class="wrongUser">Fill all the fields please ! </div>
-            ';
-        } elseif (isset($_POST['names']) && isset($_POST['passs'])) {
-            setUsers($dbc, $_POST['names'], $_POST['passs']);
-        }
-
-    }
-}
-
-function setUsers($dbc, $user, $pass)
-{
-    // $user = array();
-
-    // $usr = mysqli_real_escape_string($dbc, $user);
-    // $pas = mysqli_real_escape_string($dbc, $pass);
-
     $usr = filter_var($user, FILTER_SANITIZE_ENCODED);
     $pas = filter_var($pass, FILTER_SANITIZE_ENCODED);
+    $eml = filter_var($email, FILTER_VALIDATE_EMAIL);
+    $fm = filter_var($fullname, FILTER_SANITIZE_ENCODED);
+    $ct = filter_var($city, FILTER_SANITIZE_ENCODED);
 
-    $q = "INSERT INTO `users`( `user_name`, `password`) 
-    VALUES ('" . $usr . "','" . $pas . "')";
+
+    $q = "INSERT INTO `users`( `user_name`, `password`, `email`, `fullname`, `city`)
+     VALUES ('" . $usr . "','" . $pas . "','" . $eml . "','" . $fm . "','" . $ct . "')";
+
+    // $q = "INSERT INTO `users`( `user_name`, `password`) 
+    // VALUES ('" . $usr . "','" . $pas . "')";
 
     $qSelec = "select * from users where 1";
     $rs = mysqli_query($dbc, $qSelec);
@@ -50,11 +24,14 @@ function setUsers($dbc, $user, $pass)
 
     if ($rs) {
         $sqlUser = array();
+        $sqlEm = array();
+
         while ($row = mysqli_fetch_assoc($rs)) {
             array_push($sqlUser, $row['user_name']);
+            array_push($sqlEm, $row['email']);
         }
 
-        if (in_array($usr, $sqlUser)) {
+        if (in_array($usr, $sqlUser) or in_array($eml, $sqlEm) ) {
             echo '
             <div class="wrongUser">This user already Exists !  </div>
             ';
@@ -77,6 +54,43 @@ function setUsers($dbc, $user, $pass)
 
 }
 
+function sginup($dbc)
+{
+
+    echo '
+    <form action="signUp.php" method="POST"  >
+        <span class="req">
+        <input class="reqInput" type="text" name="fullname"  placeholder="Your Full Name">
+        </span>
+            <br> <span class="req">       
+        <input class="reqInput" type="email" name="email"  placeholder="E-mail">
+        </span>
+        <br> <span class="req">   
+        <input class="reqInput" type="text" name="names"  placeholder="Username">   
+        </span>
+        <br><span class="req">
+        <input class="reqInput" type="password" name="passs"  placeholder="Password">
+        </span>
+        <br>
+        <input type="text" name="city"  placeholder="City">
+            <br>
+        <input type="submit" name="register" value="Sign Up">
+    </form>
+    <div><a href="login.php">Log In </a></div>
+    ';
+
+    if (isset($_POST['register'])) {
+
+        if (empty($_POST['names']) or empty($_POST['passs']) or empty($_POST['email']) or empty($_POST['fullname'])) {
+            echo '
+            <div class="wrongUser">Fill all the fields please ! </div>
+            ';
+        } elseif (isset($_POST['names']) && isset($_POST['passs']) and isset($_POST['email']) && isset($_POST['fullname'])) {
+            setUsers($dbc, $_POST['names'], $_POST['passs'], $_POST['email'], $_POST['fullname'], $_POST['city']);
+        }
+
+    }
+}
 
 
 

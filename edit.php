@@ -102,7 +102,7 @@ function edit($dbc)
         <input type="submit" name="edit" value="Confirm ">
     </form>
     
-    <div><a href="<?php header(\'Location : functions/sandbox.php\');?>"> Back to Survey </a></div>
+    <div><a href="index.php"> Back to Survey </a></div>
     ';
 
     if (isset($_POST['edit'])) {

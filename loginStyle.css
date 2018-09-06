@@ -15,9 +15,11 @@ body {
 
 .login {
   max-width: 800px;
-  margin: 200px auto;
+  margin: 100px auto ;
   padding: 30px;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, .1);
+  border : 5px solid ;
+  border-radius : 20px;
+  box-shadow: 0px 5px 50px rgba(0,0,0,.1);
   background: rgba(244, 244, 244, 0.76);
 }
 

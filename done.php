@@ -1,4 +1,6 @@
 <?php
+include('file.php');
+
 include('config/connection.php');
 session_start();
 
@@ -9,13 +11,62 @@ $q1 = 'select done from users where ( user_name="'
     . $user . '" ) ;';
 $rs = mysqli_query($dbc, $q1);
 $row = mysqli_fetch_array($rs, MYSQLI_ASSOC);
-
 if ($row['done'] == 1) {
+    // session_unset();
+    // session_destroy();
+    // mysqli_close($dbc);
+} else {
+    header('Location: index.php');
+}
+
+function logout()
+{
+    $_SESSION['user'] = "";
     session_unset();
     session_destroy();
     mysqli_close($dbc);
-} else {
-    header('Location: index.php');
+
+    // echo 'hi';
+    ob_start();
+    header('Location: login.php');
+    ob_end_flush();
+    exit();
+
+}
+if (isset($_POST['logout'])) {
+    logout();
+}
+
+function getAnsr($dbc)
+{
+
+    $query_ansr = "SELECT * from `users` where user_name = '" . $_SESSION["user"] . "'";
+    // echo $query_ansr;
+    $result2 = mysqli_query($dbc, $query_ansr);
+    $ansr = mysqli_fetch_assoc($result2);
+
+    $id = $ansr['user_id'];
+
+
+    $query_qus = "SELECT * from survey_qus where 1 ";
+    // echo $query_qus;
+    $result1 = mysqli_query($dbc, $query_qus);
+
+
+    if ($result1) {
+        while ($qus = mysqli_fetch_assoc($result1)) {
+            $q = $qus['question_body'];
+            $index = $qus['qus_id'];
+            $a = $ansr['ansr' . $index . ''];
+
+
+            echo '<div class="questions">';
+            echo $q . "<br><div class='anr'>Answer : " . $a . "</div>  <br>";
+            echo '</div>';
+
+
+        }
+    }
 }
 
 ?>
@@ -27,14 +78,27 @@ if ($row['done'] == 1) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <title>SURVEY</title>
 </head>
 <body>
+<div class="wrapAll">
+    <div class="header">
+            <h2 class="sTitle">
+                <a href="edit.php"><?php echo $user; ?></a> 
+                <h2>
+                <form method="post">
+                    <input type="submit" name="logout" class="s" value="Logout"> 
+                </form>
+            </div>
+        </div>
     <div class="login">
         <h3>Done</h3>
 	<br>
-	<h4>You Finished the Survey</h4>
-      
+	<h4>You finished the survey</h4>
+    <h3><hr>Your answers : <br><br> <code><?php getAnsr($dbc); ?> <hr></h3>
+    <br>
+
     </div>
     
 </body>
@@ -44,10 +108,17 @@ if ($row['done'] == 1) {
 
 <Style>
 
-    html { height: 100%; }
+html {
+    height :100%;
+}
+.anr{
+    color:green;
+}
+.questions {
+    color : brown;
+}
 
 body {
-       padding: 30px;
         color: #647086;
         text-align: left;
         font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
@@ -59,70 +130,14 @@ body {
  .login {
     
     max-width: 800px;
-    margin: 200px auto ;
+    margin: 100px auto ;
     padding: 30px;
-    box-shadow: 0px 7px 20px rgba(0,0,0,.1);
+    border : 5px solid ;
+    border-radius : 20px;
+    box-shadow: 0px 5px 50px rgba(0,0,0,.3);
     background: rgba(244, 244, 244, 0.76);
 }   
-.wrongUser {
-    background-color: #F00;
-    color:white;
-    display: inline-block;
-    height: 30px;
-    padding-left:10px;
-    padding-top:2px;
-    position: absolute;
-    width: 230px;
-    left:43%;
-    top:51%
 
-}
-    .user {
-        position: absolute;
 
-    }
-form {
-  min-width: 500px;
-  padding: 20px;
-  border-radius: 2px;
-  
-}
-.required:required {
-  box-shadow: inset 5px 0 0 rgba(41, 99, 189, .8);
-}
-.required  {
-  display: inline-block;
-  padding: 0 5px;
-  background: rgb(99, 112, 134);
-  color: #f7f7fc;
-
-}
-form {     
-  width: 300px;
-  margin: 0 auto; 
-}
-
-input {
-    box-shadow: 1px 1px 10px rgba(0,0,0,.1);
-  height: auto ;
-  margin: 5px 100px ;
-  padding: 10px ;
-  border: none;
-  border-radius: 2px;
-  font-size: 18px;
-  cursor: text;
-  width:250px;
-  
-}
-input[type=submit] {
-    width:100px;
-  margin-left: 180px;
-  font: bold 1em 'Source Sans Pro', Arial, Helvetica, sans-serif;
-  color: white;
-  border: 3px solid rgb(35, 97, 192);
-  border-radius: 2px;
-  cursor: pointer;
-  background: #297dfc;
-}
 
 </Style>

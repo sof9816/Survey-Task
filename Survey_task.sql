@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 05, 2018 at 10:25 AM
+-- Generation Time: Sep 06, 2018 at 08:30 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -38,8 +38,8 @@ CREATE TABLE `poll` (
 --
 
 INSERT INTO `poll` (`id`, `c_one`, `c_two`, `c_three`) VALUES
-(1, 16, 1, 0),
-(2, 16, 1, 0);
+(1, 10, 1, 0),
+(2, 1, 10, 0);
 
 -- --------------------------------------------------------
 
@@ -92,16 +92,18 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `fullname` varchar(25) NOT NULL,
   `city` varchar(25) CHARACTER SET utf32 DEFAULT NULL,
-  `done` tinyint(1) NOT NULL
+  `done` tinyint(1) NOT NULL,
+  `ansr1` varchar(6) DEFAULT NULL,
+  `ansr2` varchar(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `password`, `email`, `fullname`, `city`, `done`) VALUES
-(1, 'user1', 'pass1', 'e1@eamil.com', 'Full User', 'city1', 1),
-(2, 'user2', 'pass2', 'sljs@sjl.com', 'user', '', 0);
+INSERT INTO `users` (`user_id`, `user_name`, `password`, `email`, `fullname`, `city`, `done`, `ansr1`, `ansr2`) VALUES
+(1, 'user1', 'pass1', 'e1@eamil.com', 'Full User', 'city1', 1, 'yes', 'maybe'),
+(2, 'user2', 'pass2', 'sljs@sjl.com', 'user', '', 0, NULL, NULL);
 
 --
 -- Indexes for dumped tables

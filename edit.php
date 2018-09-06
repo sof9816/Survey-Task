@@ -23,10 +23,15 @@ function editUser($dbc, $user, $pass, $email, $fullname, $city)
     $rs = mysqli_query($dbc, $uSelec);
     $rowBeforeChange = mysqli_fetch_row($rs);
 
-    // echo "<pre>";
-    // print_r($rowBeforeChange)."<br>bf<br>";
-    // print_r($rowAfterChange);
-    // echo "</pre>";
+
+    $notUserSelec = "SELECT * from users WHERE user_name !='" . $usr . "'";
+    $rs3 = mysqli_query($dbc, $notUserSelec);
+    $notUser = array();
+    $notEm = array();
+    while ($row = mysqli_fetch_assoc($rs3)) {
+        array_push($notUser, $row['user_name']);
+        array_push($notEm, $row['email']);
+    }
 
     if ($rs) {
         $sqlUser = array();
@@ -37,14 +42,12 @@ function editUser($dbc, $user, $pass, $email, $fullname, $city)
             array_push($sqlUser, $row['user_name']);
             array_push($sqlEm, $row['email']);
         }
-        // print_r($sqlUser);
-
-
         if ($rowBeforeChange == $rowAfterChange) {
             echo '
-            <div class="wrongUser">You didn\'t do changes !  </div>
+            <div class="wrongUser">You did not do  changes !  </div>
             ';
-        } elseif (in_array($usr, $sqlUser)) {
+        } elseif (in_array($usr, $sqlUser)
+            and (in_array($usr, $notUser) or in_array($eml, $notEm))) {
             echo '
             <div class="wrongUser">This user already Exists !  </div>
             ';
@@ -102,7 +105,7 @@ function edit($dbc)
         <input type="submit" name="edit" value="Confirm ">
     </form>
     
-    <div><a href="<?php header(\'Location : functions/sandbox.php\');?>"> Back to Survey </a></div>
+    <div><a href="index.php"> Back to Survey </a></div>
     ';
 
     if (isset($_POST['edit'])) {
@@ -129,7 +132,7 @@ function edit($dbc)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="loginStyle.css">
-    <title>Edit User</title>
+    <title>SURVEY</title>
 </head>
 <body>
     <div class="login">

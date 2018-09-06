@@ -4,9 +4,10 @@ include('config/config.php');
 function logout()
 {
     $_SESSION['user'] = "";
-    // session_unset();
-    // session_destroy();
+    session_unset();
+    session_destroy();
     // echo 'hi';
+    mysqli_close($dbc);
     ob_start();
     header('Location: login.php');
     ob_end_flush();
@@ -25,7 +26,7 @@ if (isset($_POST['logout'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
-    <title>My Survey</title>
+    <title>SURVEY</title>
 </head>
 
 <body>

@@ -11,5 +11,6 @@
 </ol>
 
 <code>
-  Ps: The user name to login is either user1 or user2 and offcourse you can still change, delete and put new user from the database if you can access it. 
+  Ps1: The user name to login is either user1 or user2 and offcourse you can still change, delete and put new user from the database if you can access it.
+  Ps2: I added a sign up page so you can actually skip Ps1 :3 LOL enjoy
 </code>

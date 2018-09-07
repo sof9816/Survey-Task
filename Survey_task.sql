@@ -88,7 +88,7 @@ INSERT INTO `survey_qus` (`qus_id`, `survey_id`, `question_body`) VALUES
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `user_name` varchar(255) NOT NULL,
-  `password` varchar(25) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `fullname` varchar(25) NOT NULL,
   `city` varchar(25) CHARACTER SET utf32 DEFAULT NULL,

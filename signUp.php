@@ -2,11 +2,17 @@
 include('file.php');
 include("config/connection.php");
 
+function encryptIt($q)
+{
+    $cryptKey = 'qJB0rGtIn5UB1xG03efyCp';
+    $qEncoded = @base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($cryptKey), $q, MCRYPT_MODE_CBC, md5(md5($cryptKey))));
+    return ($qEncoded);
+}
 
 function setUsers($dbc, $user, $pass, $email, $fullname, $city)
 {
     $usr = filter_var($user, FILTER_SANITIZE_ENCODED);
-    $pas = filter_var($pass, FILTER_SANITIZE_ENCODED);
+    $pas = encryptIt(filter_var($pass, FILTER_SANITIZE_ENCODED));
     $eml = filter_var($email, FILTER_VALIDATE_EMAIL);
     $fm = filter_var($fullname, FILTER_SANITIZE_ENCODED);
     $ct = filter_var($city, FILTER_SANITIZE_ENCODED);

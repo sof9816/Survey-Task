@@ -7,11 +7,14 @@
 html {
   position: relative;
   min-height: 100%;
+
 }
 
 body {
+  font-size: 16px;
+  height: 100%;
   margin: 0px;
-  font-family: 'Courier New', Courier, monospace
+  font-family: 'Courier New', Courier, monospace!important;
 }
 
 /* ###################################### */
@@ -22,6 +25,19 @@ body {
 
 h2.sTitle {
   margin: 0px;
+  float: left;
+}
+
+h2 a {
+  padding: 7px !important;
+  font-weight: normal !important ;
+  font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+  background: #FF471F;
+  border-radius: 1px 1px 30px 1px; 
+}
+
+h3.sTitle {
+  margin: 5px 0 0 30px;
   padding: 15px 0 0 15px;
   float: left;
 }
@@ -29,17 +45,25 @@ h2.sTitle {
 .s {
   float: right;
   font-size: 21px;
-  padding: 15px 15px 0 0;
+  padding: 1px 15px 0 0;
   color: white;
   background-color: Transparent;
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   border: none;
-  cursor:pointer;
-  overflow: hidden;        
-}
+  cursor: pointer;
+  overflow: hidden;
 
+
+}
+.s {
+  padding-left: 20px !important;
+  font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+  background: #FF471F;
+  border-radius: 1px 1px 1px 40px; 
+}
 .s:hover {
-  color: #CCC;
+  color: black;
+  background: #FF0000
 }
 
 h3.qTitle {
@@ -71,15 +95,30 @@ h3.qTitle {
 
 /* ###################################### */
 
-a {
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+
+a.a {
+  font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+  text-decoration: none;
+  font-weight: bold ;
   margin: 0px;
   padding: 2px 0 2px 4px;
-  text-decoration: none;
   color: white;
 }
 
 a:hover {
   color: black;
+}
+a.current {
+  color: rgb(78, 30, 42);
+  background: #F9F9FA;
+  border-radius: 5px;
+  padding: 5px;
+  
 }
 
 .header {
@@ -111,6 +150,7 @@ a:hover {
   border: 1px solid gray;
   border-radius: 20px;
   margin-left: 10px;
+  margin-bottom: 100px;
   width: 100px;
   height: 50px;
 }
@@ -119,6 +159,13 @@ a:hover {
   background: black;
   cursor: pointer;
 }
+
+
+/* ###################################### */
+
+/* ############# footer ################# */
+
+/* ###################################### */
 
 .footer {
   width: 99.9%;
@@ -134,16 +181,20 @@ a:hover {
   overflow: hidden;
 }
 
+.footer p {
+  padding-top: 10px;
+}
+
 /* ###################################### */
 
 /* ############# sideNav ################ */
 
 /* ###################################### */
 
-/* 
 .sideNav {
-  width: 17.8%;
+  width: 100%;
   float: left;
+  font-size: 22px;
 }
 
 .sideNav ul {
@@ -153,21 +204,24 @@ a:hover {
 
 .sideNav ul li {
   margin: 0px;
-  padding: 0px;
   list-style-type: none;
-  border-bottom: 1px solid #999999;
+  border-bottom: 2px solid #999999;
 }
-
-.sideNav ul li a {
+.sideNav ul li input{
+  border: none;
+  background: none;}
+.sideNav ul li span {
+  color: #0074D9;
   margin: 0px;
-  padding: 2px 0 2px 4px;
+  padding: 11px;
+  padding-left: 50px;
   text-decoration: none;
   display: block;
 }
-
-.sideNav ul li a:hover {
+.sideNav ul li span:hover {
   background: #efefef;
-} */
+  color: red;
+}
 
 /* ###################################### */
 
@@ -253,4 +307,9 @@ a:hover {
   height: 8px;
   border-radius: 50%;
   background: white;
+}
+
+label {
+  font-size: 20px !important;
+  font: message-box;
 }

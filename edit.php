@@ -2,10 +2,25 @@
 include('file.php');
 include("config/connection.php");
 session_start();
+
+function encryptIt($q)
+{
+    $cryptKey = 'qJB0rGtIn5UB1xG03efyCp';
+    $qEncoded = @base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($cryptKey), $q, MCRYPT_MODE_CBC, md5(md5($cryptKey))));
+    return ($qEncoded);
+}
+
+function decryptIt($q)
+{
+    $cryptKey = 'qJB0rGtIn5UB1xG03efyCp';
+    $qDecoded = @rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($cryptKey), base64_decode($q), MCRYPT_MODE_CBC, md5(md5($cryptKey))), "\0");
+    return ($qDecoded);
+}
+
 function editUser($dbc, $user, $pass, $email, $fullname, $city)
 {
     $usr = filter_var($user, FILTER_SANITIZE_ENCODED);
-    $pas = filter_var($pass, FILTER_SANITIZE_ENCODED);
+    $pas = encryptIt(filter_var($pass, FILTER_SANITIZE_ENCODED));
     $eml = filter_var($email, FILTER_VALIDATE_EMAIL);
     $fm = filter_var($fullname, FILTER_SANITIZE_STRING);
     $ct = filter_var($city, FILTER_SANITIZE_ENCODED);
@@ -81,7 +96,7 @@ function edit($dbc)
 
 
     echo '
-    <form action="edit.php" method="POST"  >
+    <form action="edit.php" method="POST">
         <span class="req">
         <input class="reqInput" type="text" name="fullname"  placeholder="Your Full Name" value="' . $row['fullname'] . '">
         
@@ -95,7 +110,7 @@ function edit($dbc)
         
         </span>
         <br><span class="req">
-        <input class="reqInput" type="text" name="passs"  placeholder="Password" value="' . $row['password'] . '">
+        <input class="reqInput" type="text" name="passs"  placeholder="Password" value="' . decryptIt($row['password']) . '">
         
         </span>
         <br>

@@ -1,47 +1,42 @@
 <?php
 include('file.php');
 include('config/config.php');
-function logout()
-{
-    $_SESSION['user'] = "";
-    session_unset();
-    session_destroy();
-    // echo 'hi';
-    mysqli_close($dbc);
-    ob_start();
-    header('Location: login.php');
-    ob_end_flush();
-    exit();
+$_SESSION['surname'];
+if (isset($_POST['chsur'])) {
+    $_SESSION['surname'] = $_POST['chsur'];
+    header('Location: surv.php?pgid=1');
 
-}
-if (isset($_POST['logout'])) {
-    logout();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="style.css">
     <title>SURVEY</title>
-</head>
 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+</head>
 <body>
-    <div class="wrapAll">
+<div class="wrapAll">
         <div class="header">
             <h2 class="sTitle">
                 <a class="a" href="edit.php"><?php getUser() ?></a> 
             </h2>
             <h3 class="sTitle">
-                <a class="a current" href="index.php">clasic survey</a> 
+                <a class="a" href="index.php">clasic survey</a>  
             </h3>
             <h3 class="sTitle">
-                <a class="a" href="surveies.php ">Other surveies</a> 
+                <a class="a current" href="surveies.php ">Other surveies</a>
             </h3>
             <h3 class="sTitle">
                 <a class="a" href="#">Create a survey</a> 
@@ -51,13 +46,10 @@ if (isset($_POST['logout'])) {
                 </form>
             </div>
             <div class="wrapContent">
-                <!-- <div class="sideNav">
-                    <?php #sideNav($dbc); ?>
-                </div> -->
-                <div class="content">
-                    <h1><?php head(); ?></h1>                 
-                     <?php getQuestions($dbc); ?>
-                </div>  <!--  end content-->
+                <div class="sideNav">
+                    <?php sideNav($dbc); ?>
+                </div>
+               
 
             </div>  <!--  end wrapContent-->
 

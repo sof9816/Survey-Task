@@ -3,12 +3,20 @@ include('file.php');
 session_start();
 include("config/connection.php");
 
+
+function encryptIt($q)
+{
+    $cryptKey = 'qJB0rGtIn5UB1xG03efyCp';
+    $qEncoded = @base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($cryptKey), $q, MCRYPT_MODE_CBC, md5(md5($cryptKey))));
+    return ($qEncoded);
+}
+
 function chk($dbc, $user, $pass)
 {
+    $pass = encryptIt($pass);
     $q = 'select user_name,password from users where ( user_name="'
         . $user . '" or email ="'
         . $user . '" ) AND password="' . $pass . '" ;';
-
     $rs = mysqli_query($dbc, $q);
 
     $row = mysqli_fetch_array($rs, MYSQLI_ASSOC);

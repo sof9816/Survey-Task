@@ -5,11 +5,11 @@
 
     // unsetCookie('plusUser');
 
-    function unsetCookie($name)
-    {
-        unset($_COOKIE[$name]);
-        $res = setcookie($name, '', time() - 3600);
-    }
+    // function unsetCookie($name)
+    // {
+    //     unset($_COOKIE[$name]);
+    //     $res = setcookie($name, '', time() - 3600);
+    // }
 
     $user = $_SESSION['user'];
     $q1 = 'select done from users where ( user_name="'

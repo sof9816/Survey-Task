@@ -16,13 +16,13 @@ $dbc = @mysqli_connect(db_host, user_name, user_pass, db_name)
 
 function getSurName()
 {
-  $query = "SELECT * FROM `survey_` WHERE 1";
+  $query = "SELECT * FROM `survey_` WHERE survey_name = '" . $_SESSION['surname']."'";
   $result = @mysqli_query($GLOBALS["dbc"], $query);
 
   if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {
       $sn = $row['survey_name'];
-      echo "<h1><code>".$sn."</code></h1><br>";
+      echo "<h1><code>" . $sn . "</code></h1><br>";
     }
   } 
   // return $sn;

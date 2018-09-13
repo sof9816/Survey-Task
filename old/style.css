@@ -1,0 +1,315 @@
+/* ###################################### */
+
+/* ############# basic tags ############# */
+
+/* ###################################### */
+
+html {
+  position: relative;
+  min-height: 100%;
+
+}
+
+body {
+  font-size: 16px;
+  height: 100%;
+  margin: 0px;
+  font-family: 'Courier New', Courier, monospace!important;
+}
+
+/* ###################################### */
+
+/* ############# head ################### */
+
+/* ###################################### */
+
+h2.sTitle {
+  margin: 0px;
+  float: left;
+}
+
+h2 a {
+  padding: 7px !important;
+  font-weight: normal !important ;
+  font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+  background: #FF471F;
+  border-radius: 1px 1px 30px 1px; 
+}
+
+h3.sTitle {
+  margin: 5px 0 0 30px;
+  padding: 15px 0 0 15px;
+  float: left;
+}
+
+.s {
+  float: right;
+  font-size: 21px;
+  padding: 1px 15px 0 0;
+  color: white;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+
+
+}
+.s {
+  padding-left: 20px !important;
+  font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+  background: #FF471F;
+  border-radius: 1px 1px 1px 40px; 
+}
+.s:hover {
+  color: black;
+  background: #FF0000
+}
+
+h3.qTitle {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* ###################################### */
+
+/* ############# wrap ################### */
+
+/* ###################################### */
+
+.wrapAll {
+  width: 99.9%;
+  border-left: 1px solid #999999;
+  border-right: 1px solid #999999;
+  border-bottom: 1px solid #999999;
+  margin: 0 auto;
+}
+
+.wrapContent {
+  width: 100%;
+}
+
+/* ###################################### */
+
+/* ############# header ################# */
+
+/* ###################################### */
+
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+
+a.a {
+  font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+  text-decoration: none;
+  font-weight: bold ;
+  margin: 0px;
+  padding: 2px 0 2px 4px;
+  color: white;
+}
+
+a:hover {
+  color: black;
+}
+a.current {
+  color: rgb(78, 30, 42);
+  background: #F9F9FA;
+  border-radius: 5px;
+  padding: 5px;
+  
+}
+
+.header {
+  color: white;
+  background: #0074D9;
+  border-bottom: 1px solid #999999;
+  height: 60px;
+}
+
+.content {
+  width: 80%;
+  float: right;
+  min-height: 800px;
+  height: 100%;
+  padding: 0px 20px;
+  bottom: 0;
+}
+
+.questions {
+  font-size: 20px;
+  margin-bottom: 40px;
+  margin-left: 30px;
+}
+
+.submit {
+  font-size: 20px;
+  color: white;
+  background: #0074D9;
+  border: 1px solid gray;
+  border-radius: 20px;
+  margin-left: 10px;
+  margin-bottom: 100px;
+  width: 100px;
+  height: 50px;
+}
+
+.submit:hover {
+  background: black;
+  cursor: pointer;
+}
+
+
+/* ###################################### */
+
+/* ############# footer ################# */
+
+/* ###################################### */
+
+.footer {
+  width: 99.9%;
+  background: #0074D9;
+  color: white;
+  border-top: 1px solid #999999;
+  clear: both;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  height: 50px;
+  overflow: hidden;
+}
+
+.footer p {
+  padding-top: 10px;
+}
+
+/* ###################################### */
+
+/* ############# sideNav ################ */
+
+/* ###################################### */
+
+.sideNav {
+  width: 100%;
+  float: left;
+  font-size: 22px;
+}
+
+.sideNav ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+.sideNav ul li {
+  margin: 0px;
+  list-style-type: none;
+  border-bottom: 2px solid #999999;
+}
+.sideNav ul li input{
+  border: none;
+  background: none;}
+.sideNav ul li span {
+  color: #0074D9;
+  margin: 0px;
+  padding: 11px;
+  padding-left: 50px;
+  text-decoration: none;
+  display: block;
+}
+.sideNav ul li span:hover {
+  background: #efefef;
+  color: red;
+}
+
+/* ###################################### */
+
+/* ############# entry ################ */
+
+/* ###################################### */
+
+.entry {
+  margin: 30px;
+}
+
+/* ###################################### */
+
+/* ############ radio buttons ########### */
+
+/* ###################################### */
+
+.container {
+  margin-top: 5px;
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+
+.container input {
+  position: absolute;
+  opacity: 0;
+}
+
+/* Create a custom radio button */
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+
+.container:hover input~.checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+
+.container input:checked~.checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+
+.container input:checked~.checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+
+.container .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+label {
+  font-size: 20px !important;
+  font: message-box;
+}

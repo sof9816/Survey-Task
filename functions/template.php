@@ -42,7 +42,7 @@ function footer()
 function sideNav($dbc)
 {
 
-    $q = 'select * from survey_ where 1;';
+    $q = 'select * from survey_ where id > 1;';
     $rs = mysqli_query($GLOBALS['dbc'], $q);
 
     echo '<form  method="POST">

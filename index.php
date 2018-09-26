@@ -25,9 +25,13 @@ if (isset($_POST['logout'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="style.css">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+
     <title>SURVEY</title>
 </head>
 
@@ -44,7 +48,7 @@ if (isset($_POST['logout'])) {
                 <a class="a" href="surveies.php ">Other surveies</a> 
             </h3>
             <h3 class="sTitle">
-                <a class="a" href="#">Create a survey</a> 
+                <a class="a" href="create.php">Create a survey</a> 
             </h3>
                 <form method="post">
                     <input type="submit" name="logout" class="s" value="Logout"> 
@@ -55,7 +59,8 @@ if (isset($_POST['logout'])) {
                     <?php #sideNav($dbc); ?>
                 </div> -->
                 <div class="content">
-                    <h1><?php head(); ?></h1>                 
+                <h2 class="sTitle"><h1><code> Classic Survey </code></h1></h2>
+                    <br>             
                      <?php getQuestions($dbc); ?>
                 </div>  <!--  end content-->
 

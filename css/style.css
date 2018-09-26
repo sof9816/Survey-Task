@@ -7,14 +7,13 @@
 html {
   position: relative;
   min-height: 100%;
-
 }
 
 body {
   font-size: 16px;
   height: 100%;
   margin: 0px;
-  font-family: 'Courier New', Courier, monospace!important;
+  font-family: 'Courier New', Courier, monospace !important;
 }
 
 /* ###################################### */
@@ -30,10 +29,10 @@ h2.sTitle {
 
 h2 a {
   padding: 7px !important;
-  font-weight: normal !important ;
+  font-weight: normal !important;
   font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
   background: #FF471F;
-  border-radius: 1px 1px 30px 1px; 
+  border-radius: 1px 1px 30px 1px;
 }
 
 h3.sTitle {
@@ -52,15 +51,15 @@ h3.sTitle {
   border: none;
   cursor: pointer;
   overflow: hidden;
-
-
 }
+
 .s {
   padding-left: 20px !important;
   font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
   background: #FF471F;
-  border-radius: 1px 1px 1px 40px; 
+  border-radius: 1px 1px 1px 40px;
 }
+
 .s:hover {
   color: black;
   background: #FF0000
@@ -100,11 +99,10 @@ a:visited {
   text-decoration: none;
 }
 
-
 a.a {
   font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
   text-decoration: none;
-  font-weight: bold ;
+  font-weight: bold;
   margin: 0px;
   padding: 2px 0 2px 4px;
   color: white;
@@ -113,12 +111,12 @@ a.a {
 a:hover {
   color: black;
 }
+
 a.current {
   color: rgb(78, 30, 42);
   background: #F9F9FA;
   border-radius: 5px;
   padding: 5px;
-  
 }
 
 .header {
@@ -160,7 +158,6 @@ a.current {
   cursor: pointer;
 }
 
-
 /* ###################################### */
 
 /* ############# footer ################# */
@@ -192,8 +189,8 @@ a.current {
 /* ###################################### */
 
 .sideNav {
-  width: 100%;
-  float: left;
+  width: 50%;
+  margin: 0 auto;
   font-size: 22px;
 }
 
@@ -205,19 +202,26 @@ a.current {
 .sideNav ul li {
   margin: 0px;
   list-style-type: none;
-  border-bottom: 2px solid #999999;
+  margin-bottom: 5px;
 }
-.sideNav ul li input{
+
+.sideNav ul li input {
   border: none;
-  background: none;}
+  width: 100%;
+  height: 50px;
+  background: none;
+}
+
 .sideNav ul li span {
-  color: #0074D9;
-  margin: 0px;
-  padding: 11px;
+  font-weight: bold;
+  border: solid #0074D9 1px;
+  color: #FF481F;
+  margin: 5px;
+  padding: 1px;
   padding-left: 50px;
-  text-decoration: none;
   display: block;
 }
+
 .sideNav ul li span:hover {
   background: #efefef;
   color: red;

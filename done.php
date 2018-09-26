@@ -1,6 +1,6 @@
 <?php
 include('file.php');
-
+include('functions\template.php');
 include('config/connection.php');
 session_start();
 
@@ -11,14 +11,10 @@ $q1 = 'select done from users where ( user_name="'
     . $user . '" ) ;';
 $rs = mysqli_query($dbc, $q1);
 $row = mysqli_fetch_array($rs, MYSQLI_ASSOC);
-if ($row['done'] == 1) {
-    // session_unset();
-    // session_destroy();
-    // mysqli_close($dbc);
-} else {
+if ($row['done'] != 1) {
     header('Location: index.php');
-}
 
+}
 function logout()
 {
     $_SESSION['user'] = "";
@@ -78,20 +74,40 @@ function getAnsr($dbc)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- jQuery library -->
+    <script src="js/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    
     <title>SURVEY</title>
 </head>
 <body>
 <div class="wrapAll">
-    <div class="header">
+        <div class="header">
             <h2 class="sTitle">
-                <a href="edit.php"><?php echo $user; ?></a> 
-                <h2>
+                <a class="a" href="edit.php"><?php getUser() ?></a> 
+            </h2>
+            <h3 class="sTitle">
+                <a class="a" href="index.php">clasic survey</a>  
+            </h3>
+            <h3 class="sTitle">
+                <a class="a " href="surveies.php ">Other surveies</a>
+            </h3>
+            <h3 class="sTitle">
+                <a class="a" href="#">Create a survey</a> 
+            </h3>
                 <form method="post">
                     <input type="submit" name="logout" class="s" value="Logout"> 
                 </form>
             </div>
-        </div>
+
+ </div>
     <div class="login">
         <h3>Done</h3>
 	<br>

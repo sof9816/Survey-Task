@@ -1,6 +1,22 @@
 <?php
 include('file.php');
 include('config/config.php');
+
+$user = $_SESSION['user'];
+$q1 = 'select done from users where ( user_name="'
+    . $user . '" or email ="'
+    . $user . '" ) ;';
+$rs = mysqli_query($dbc, $q1);
+$row = mysqli_fetch_array($rs, MYSQLI_ASSOC);
+
+
+if ($row['done'] == 1) {
+    ob_start();
+    header('Location: done.php');
+    ob_end_flush();
+    exit();
+}
+
 function logout()
 {
     $_SESSION['user'] = "";

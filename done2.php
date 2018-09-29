@@ -159,7 +159,7 @@ function getAnsr($dbc, $sid, $uid)
                 <a class="a " href="surveies.php ">Other surveies</a>
             </h3>
             <h3 class="sTitle">
-                <a class="a" href="#">Create a survey</a> 
+                <a class="a" href="create.php">Create a survey</a> 
             </h3>
                 <form method="post">
                     <input type="submit" name="logout" class="s" value="Logout"> 

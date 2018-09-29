@@ -12,25 +12,11 @@
     // }
 
     $user = $_SESSION['user'];
-    $q1 = 'select done from users where ( user_name="'
-        . $user . '" or email ="'
-        . $user . '" ) ;';
     $q2 = 'UPDATE `users` SET done = 1 WHERE ( user_name="'
         . $user . '" or email ="'
         . $user . '" ) ;';
 
-    $rs = mysqli_query($dbc, $q1);
-    $row = mysqli_fetch_array($rs, MYSQLI_ASSOC);
-
-
-    if ($row['done'] == 1) {
-        ob_start();
-        header('Location: done.php', true, 301);
-        ob_end_flush();
-        exit();
-    }
-
-    if (empty($_SESSION['user'])) {
+    if (empty($user)) {
         // $_SESSION['user'] = "";
         ob_start();
         session_unset();

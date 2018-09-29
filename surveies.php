@@ -1,11 +1,12 @@
 <?php
 include('file.php');
 include('config/config.php');
-if (isset($_SESSION['rsltAnsr'])) {
+// if (isset($_SESSION['rsltAnsr'])) {
     unset($_SESSION['rsltAnsr']);
     unset($_SESSION['Next']);
-}
-$_SESSION['surname'];
+    unset($_SESSION['surname']);
+// }
+
 $rsltAnsr = array();
 $_SESSION['rsltAnsr'] = $rsltAnsr;
 $_SESSION['next'] = "Next";

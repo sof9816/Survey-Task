@@ -111,7 +111,7 @@ function getAnsr($dbc)
     </div>
  </div>
     <div class="login">
-        <h3>Done</h3>
+    <h2><code>Done The Clasic Survey</code></h2>
 	<br>
 	<h4>You finished the survey</h4>
     <h3><hr>Your answers : <br><br> <code><?php getAnsr($dbc); ?> <hr></h3>

@@ -72,7 +72,7 @@ if ($isDone['Done'] == 1) {
 
 //  if the user done the survey than set done ---------------------------------//
 $done = 1;
-$sqlSt = "INSERT INTO `surIsDone`( `Done`, `user_id`, `sur_id`)
+$sqlSt = "INSERT INTO `surisdone`( `Done`, `user_id`, `sur_id`)
  VALUES (" . $done . "," . $uid . "," . $sid . ")";
 
 

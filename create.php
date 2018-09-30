@@ -144,10 +144,10 @@ if (isset($_POST['create'])) {
                                      for (a = 1; a <= 5; a++) {
                                         if(a==1 || a==2){
                                             $(".sur")
-                                            .append( '<label for="" class="g">Choice '+ a +' : <input type="text" class="ansr" name="a' + p +''+ q +''+ a +'" required></label>');
+                                            .append( '<label for="" class="g ansr">Choice '+ a +' : <input type="text" class="ans" name="a' + p +''+ q +''+ a +'" required></label>');
 
                                          }else {
-                                            $(".sur").append( '<label for="" class="g">Choice '+ a +' : <input type="text" class="ansr" name="a' + p +''+ q +''+ a +'"></label>');
+                                            $(".sur").append( '<label for="" class="g ansr">Choice '+ a +' : <input type="text" class="ans" name="a' + p +''+ q +''+ a +'"></label>');
                                          }
 
                                      }
@@ -332,9 +332,11 @@ if (isset($_POST['create'])) {
         width : 20% !important;
     }
     .ansr{
-        display : inline;
-        width : 15%;
-        color : green ;
+        width : 700px;
+
+    }
+    .ans{
+        width : 300px !important;
 
     }
     input[type=text] {

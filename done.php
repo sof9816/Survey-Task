@@ -1,7 +1,7 @@
 <?php
 include('file.php');
-include('functions\template.php');
 include('config/connection.php');
+include('functions/template.php');
 session_start();
 
 $user = $_SESSION['user'];

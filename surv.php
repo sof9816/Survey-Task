@@ -97,7 +97,7 @@ if (isset($_POST['submit']) and $pgid <= $pgIdLast) {
             if ($rs6) {
                 header('Location: done2.php');
             } else {
-                echo "error";
+                echo $GLOBALS['sqlSt'];
             }
 
         }
